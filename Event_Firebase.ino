@@ -1,4 +1,5 @@
 void catchEvent() {
+  Serial.println("Bat su kien");
   if (Firebase.available()) {
     FirebaseObject event = Firebase.readEvent();
     String eventType = event.getString("type");

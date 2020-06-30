@@ -13,31 +13,30 @@ void notiFeed() {
   delay(50);
 }
 void percentFeed(int a) {
+  LCDClear2();
+  LCDPrint(0,1, "Feed Level:" + String(a) + "%");
   Firebase.setInt("HoCa/Feed/remain", a);
   delay(20);
 }
 void getDistance()
 {
   Serial.println("Do khoang cach de");
-  int distance = 10;
-
-  //unsigned long duration; // biến đo thời gian
-  //    int distance;           // biến lưu khoảng cách
-  //    /* Phát xung từ chân trig */
-  //    digitalWrite(trig,0);   // tắt chân trig
-  //    delayMicroseconds(2);
-  //    digitalWrite(trig,1);   // phát xung từ chân trig
-  //    delayMicroseconds(5);   // xung có độ dài 5 microSeconds
-  //    digitalWrite(trig,0);   // tắt chân trig
-  //    /* Tính toán thời gian */
-  //    // Đo độ rộng xung HIGH ở chân echo.
-  //    duration = pulseIn(echo,HIGH);
-  //    // Tính khoảng cách đến vật.
-  //    distance = int(duration/2/29.412);
-  //    /* In kết quả ra Serial Monitor */
-  // //   Serial.print(distance);
-  // //   Serial.println("cm");
-  //    return distance;
+  unsigned long duration; // biến đo thời gian
+      int distance;           // biến lưu khoảng cách
+      /* Phát xung từ chân trig */
+      digitalWrite(trig,0);   // tắt chân trig
+      delayMicroseconds(2);
+      digitalWrite(trig,1);   // phát xung từ chân trig
+      delayMicroseconds(5);   // xung có độ dài 5 microSeconds
+      digitalWrite(trig,0);   // tắt chân trig
+      /* Tính toán thời gian */
+      // Đo độ rộng xung HIGH ở chân echo.
+      duration = pulseIn(echo,HIGH);
+      // Tính khoảng cách đến vật.
+      distance = int(duration/2/29.412);
+      /* In kết quả ra Serial Monitor */
+      Serial.print(distance);
+      Serial.println("cm");
   if      (distance == 8) percentFeed(10);
   else if (distance == 7) percentFeed(20);
   else if (distance == 6) percentFeed(30);

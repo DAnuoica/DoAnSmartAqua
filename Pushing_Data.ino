@@ -1,6 +1,7 @@
 //pushing DATA
 void currentStatus() {
   Firebase.setInt("HoCa/Temp", getCurrentTemp());
+   delay(50);
   Firebase.setInt("HoCa/Light", getCurrentLight());
   delay(50);
   }

@@ -9,8 +9,7 @@ int getCurrentTemp()
   sensors.requestTemperatures();
   // Serial.println(sensors.getTempCByIndex(0));
   delay(50);
-  // return round (sensors.getTempCByIndex(0));
-  return 28;
+  return round (sensors.getTempCByIndex(0));
 }
 
 void stopWarmerCooler ()
@@ -27,22 +26,29 @@ void stopWarmerCooler ()
     if (currentTemp == requestTemp)
     {
       keyTemp = false;
+//      Firebase.setBool("HoCa/Cooler/value", false);
+//      Firebase.setBool("HoCa/Warmer/value", false);
       switchCooler(false);
       switchWarmer(false);
       Serial.println("Tat tat ca dieu khien nong lanh...");
     }
     else if (currentTemp < requestTemp) {
       Serial.println("Nguoi dung yeu cau tang nhiet do");
+     // Firebase.setBool("HoCa/Cooler/value", false);
       switchCooler(false); // Firstly, switch off the Cooler
       Serial.println("Tat cooler va purifier khong doi");
+      //Firebase.setBool("HoCa/Warmer/value", true);
       switchWarmer(true); // Switch on the Warmer
       Serial.println("Bat warmer");
     }
     else if (currentTemp > requestTemp) {
       Serial.println("Nguoi dung yeu cau giam nhiet do");
+      //Firebase.setBool("HoCa/Cooler/value", true);
+      Firebase.setBool("HoCa/Purifier/value", true);
       switchCooler(true); // Firstly, switch off the Cooler
-      switchPurifier(true); //
+      //switchPurifier(true); //
       Serial.println("Bat cooler va purifier");
+      //Firebase.setBool("HoCa/Warmer/value", false);
       switchWarmer(false); // Switch on the Warmer
       Serial.println("Tat warmer");
     }

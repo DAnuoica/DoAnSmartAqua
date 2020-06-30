@@ -10,9 +10,13 @@ void setSchedule(bool check) {
     purifier_START = Firebase.getString("HoCa/Purifier/start"); if (purifier_START != "") remainSchedule++;
     purifier_STOP = Firebase.getString("HoCa/Purifier/stop"); if (purifier_STOP != "") remainSchedule++;
     Serial.println("Da cai dat hen gio");
+    LCDClear2();
+    LCDPrint(0, 1, "Schedule: ON");
   }
   else {
     remainSchedule = 0;
+    LCDClear2();
+    LCDPrint(0, 1, "Schedule: OFF");
   }
 }
 

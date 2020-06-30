@@ -1,28 +1,27 @@
 bool Outage() {
-//  int value = analogRead(A0); 
-//  float volt = (value /(1023.0 *(5/3.3)))*5;
-//  Serial.println(volt);
-//  if(volt>1) return false;
-//  return true;
-return false;
+  int value = analogRead(A0); 
+  float volt = (value /(1023.0 *(5/3.3)))*5;
+  Serial.println(volt);
+  if(volt>1) return false;
+  return true;
 }
 void servoOpen() {
-  gServo1.write(170);
-  gServo2.write(10);
-  for (int i = 160; i > 30; i = i - 20) {
-    gServo1.write(i);
-    gServo2.write(180 - i);
-    delay(1000);
-  }
+    gServo1.write(160);
+//    for(int i=160;i>40;i=i-20) {
+//      gServo1.write(i);
+//      delay(1000);
+//      }
+delay(1000);
+gServo1.write(20);
 }
-void servoClose() {
-  for (int i = 40; i < 180; i = i + 20) {
-    gServo1.write(i);
-    gServo2.write(180 - i);
-    delay(1000);
-  }
-
-}
+//void servoClose() {
+//  for (int i = 50; i < 165; i = i + 20) {
+//    gServo1.write(i);
+////    gServo2.write(180 - i);
+//    delay(1000);
+//  }
+//
+//}
 
 void connectWifi() {
   Serial.println("Reading EEPROM ssid");
